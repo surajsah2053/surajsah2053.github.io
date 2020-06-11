@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <meta charset="UTF-8" />
+    <!-- <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Public+Sans:300,500&display=swap"
+      rel="stylesheet"
+    /> -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
+    />
+  </head>
+  <body class="text-center">
+    <div class="main" id="mainContainer">
+      <div class="container-fluid mt-3">
+        <!-- jumbotron -->
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1>Github Repositories</h1>
+          </div>
+        </div>
+        <table id="example" class="display" style="width: 100%;">
+          <thead class="text-center">
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>URL</th>
+              <th>Language</th>
+              <th>Created in Date</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+    <script
+      type="text/javascript"
+      language="javascript"
+      src="https://code.jquery.com/jquery-3.5.1.js"
+    ></script>
+    <script
+      type="text/javascript"
+      language="javascript"
+      src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        var baseurl = "https://api.github.com/users/surajsah2053/repos";
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", baseurl, true);
+        xmlhttp.onreadystatechange = function () {
+          var persons = JSON.parse(xmlhttp.responseText);
+          $("#example").DataTable({
+            data: persons,
+            columns: [
+              { data: "id" },
+              { data: "name" },
+              { data: "html_url" },
+              { data: "language" },
+              { data: "created_at" },
+            ],
+          });
+        };
+        xmlhttp.send();
+      });
+    </script>
+  </body>
+</html>
